@@ -1,0 +1,15 @@
+.game {
+	width: fit-content;
+	height: fit-content;
+}
+
+.row1, .col1, .col2, .col3, .row3 {
+	box-sizing: border-box;
+	border: 1px black solid;
+	padding: 20px;
+	margin: 2px;
+}
+
+.row2 {
+	display: flex;
+}

@@ -1,0 +1,35 @@
+<div class="game">
+	<div class="row1">
+	{{#each comp2_cards}}
+		<input type="button" value="{{this}}">
+	{{/each}}
+	</div>
+	
+	<div class="row2">
+		<div class="col1">
+		{{#each comp1_cards}}
+			<input type="button" value="{{this}}">
+		{{/each}}
+		</div>
+
+		<div class="col2">
+			<input type="button" value="Comp1" style='visibility:hidden'><br>
+			<input type="button" value="Comp2" style='visibility:hidden'><br>
+			<input type="button" value="Comp3" style='visibility:hidden'><br>
+			<input type="button" value="Player" style='visibility:hidden'><br>
+			<input type="button" value="Pass">
+		</div>
+
+		<div class="col3">
+		{{#each comp3_cards}}
+			<input type="button" value="{{this}}">
+		{{/each}}
+		</div>
+	</div>
+
+	<div class="row3">
+	{{#each player_cards}}
+		<input type="button" value="{{this}}">
+	{{/each}}
+	</div>
+</div>
