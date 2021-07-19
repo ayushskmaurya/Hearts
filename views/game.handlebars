@@ -1,35 +1,35 @@
 <div class="game">
 	<div class="row1">
-	{{#each comp2_cards}}
-		<input type="button" value="{{this}}">
+	{{#each range}}
+		<input type="button" id="p2-{{this}}" value="#" disabled>
 	{{/each}}
 	</div>
 	
 	<div class="row2">
 		<div class="col1">
-		{{#each comp1_cards}}
-			<input type="button" value="{{this}}">
+		{{#each range}}
+			<input type="button" id="p1-{{this}}" value="#" disabled>
 		{{/each}}
 		</div>
 
 		<div class="col2">
-			<input type="button" value="Comp1" style='visibility:hidden'><br>
-			<input type="button" value="Comp2" style='visibility:hidden'><br>
-			<input type="button" value="Comp3" style='visibility:hidden'><br>
-			<input type="button" value="Player" style='visibility:hidden'><br>
-			<input type="button" value="Pass">
+			<input type="button" id="player3_card" value="" style='visibility:hidden'><br>
+			<input type="button" id="player2_card" value="" style='visibility:hidden'><br>
+			<input type="button" id="player1_card" value="" style='visibility:hidden'><br>
+			<input type="button" id="player0_card" value="" style='visibility:hidden'><br>
+			<input type="button" id="ok" onclick="next_trick();" value="OK">
 		</div>
 
 		<div class="col3">
-		{{#each comp3_cards}}
-			<input type="button" value="{{this}}">
+		{{#each range}}
+			<input type="button" id="p3-{{this}}" value="#" disabled>
 		{{/each}}
 		</div>
 	</div>
 
 	<div class="row3">
-	{{#each player_cards}}
-		<input type="button" value="{{this}}">
+	{{#each player0_cards}}
+		<input type="button" id="{{this}}" onclick="throw_card('{{this}}');" value="{{this}}">
 	{{/each}}
 	</div>
 </div>
