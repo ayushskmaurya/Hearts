@@ -13,11 +13,11 @@ next_trick = () => {
 	xhr.onload = function() {
 		let data = JSON.parse(this.responseText);
 		if(!data.game_over) {
-			Object.keys(data.players_card).forEach(player => {
+			for(let player in data.players_card) {
 				document.getElementById("p" + player + "-" + --cards_left['player' + player]).remove();
 				document.getElementById("player" + player + "_card").value = data.players_card[player];
 				document.getElementById("player" + player + "_card").style.visibility = "visible";
-			});
+			}
 			canThrow = true;
 		}
 		else
@@ -41,11 +41,11 @@ throw_card = (card) => {
 			document.getElementById("player0_card").style.visibility = "visible";
 			delete players_card[0];
 			canThrow = false;
-			Object.keys(players_card).forEach(player => {
+			for(let player in players_card) {
 				document.getElementById("p" + player + "-" + --cards_left['player' + player]).remove();
 				document.getElementById("player" + player + "_card").value = players_card[player];
 				document.getElementById("player" + player + "_card").style.visibility = "visible";
-			});
+			}
 			document.getElementById("ok").disabled = false;
 		};
 
