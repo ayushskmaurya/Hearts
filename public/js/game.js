@@ -11,12 +11,15 @@ next_trick = () => {
 
 	xhr.onload = function() {
 		let data = JSON.parse(this.responseText);
-		if(!data.game_over)
+		if(!data.game_over) {
+			for(let player in data.scores)
+				document.getElementById(player + "_score").innerHTML = data.scores[player];
 			for(let player in data.players_card) {
 				document.getElementById("p" + player + "-" + --cards_left['player' + player]).remove();
 				document.getElementById("player" + player + "_card").value = data.players_card[player];
 				document.getElementById("player" + player + "_card").style.visibility = "visible";
 			}
+		}
 		else
 			location.href="/game";
 	};

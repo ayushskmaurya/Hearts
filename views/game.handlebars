@@ -3,6 +3,7 @@
 	{{#each range}}
 		<input type="button" id="p2-{{this}}" value="#" disabled>
 	{{/each}}
+		<span id="player2_score"></span>
 	</div>
 	
 	<div class="row2">
@@ -10,6 +11,7 @@
 		{{#each range}}
 			<input type="button" id="p1-{{this}}" value="#" disabled>
 		{{/each}}
+			<span id="player1_score"></span>
 		</div>
 
 		<div class="col2">
@@ -24,6 +26,7 @@
 		{{#each range}}
 			<input type="button" id="p3-{{this}}" value="#" disabled>
 		{{/each}}
+			<span id="player3_score"></span>
 		</div>
 	</div>
 
@@ -31,5 +34,6 @@
 	{{#each player0_cards}}
 		<input type="button" id="{{this}}" onclick="can_throw('{{this}}');" value="{{this}}">
 	{{/each}}
+		<span id="player0_score"></span>
 	</div>
 </div>

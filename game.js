@@ -4,6 +4,7 @@ var lead;  // Player who leads with the current trick.
 var tricks_left;  // To track the no. of tricks left.
 var cards_thrown = {};  // Cards thrown by each player for the trick.
 var isPlayerTurn = false;  // To check whether the player can throw card.
+var scores = {};
 
 // Sorting the cards
 sortCards = (card2, card1) => {
@@ -26,12 +27,18 @@ deleteCard = (cards, card) => {
 // To return the player who is winner of the trick.
 trick_winner = () => {
 	let winner = lead;
+	let score = 0;
 	for(let player in cards_thrown) {
+		if(cards_thrown[player] == 's12')
+			score += 13;
+		else if(cards_thrown[player][0] == 'h')
+			score += 1;
 		let cond1 = cards_thrown[lead.toString()][0] === cards_thrown[player][0];
 		let cond2 = cond1 && (parseInt(cards_thrown[winner.toString()].substring(1)) < parseInt(cards_thrown[player].substring(1)));
 		if(cond2)
 			winner = parseInt(player);
 	}
+	scores['player' + winner] += score;
 	return winner;
 };
 
@@ -71,6 +78,7 @@ choose_card = (player) => {
 // Dealing the cards
 exports.Deal = (deck) => {
 	tricks_left = 13;
+	scores = {'player0': 0, 'player1': 0, 'player2': 0, 'player3': 0};
 	for(let i=1; i<=3; i++)
 		players_cards['player' + i] = deck.splice(0, 13).sort((card2, card1) => {return sortCards(card2, card1)});
 	player_cards = deck.splice(0, 13).sort((card2, card1) => {return sortCards(card2, card1)});
@@ -86,13 +94,13 @@ exports.next_trick = () => {
 			for(let i=lead; i<=3; i++)
 				cards_thrown[i] = choose_card('player' + i);
 			isPlayerTurn = true;
-			return {game_over: false, players_card: cards_thrown};
+			return {game_over: false, scores: scores, players_card: cards_thrown};
 		}
 		isPlayerTurn = true;
-		return {game_over: false, players_card: cards_thrown};
+		return {game_over: false, scores: scores, players_card: cards_thrown};
 	}
 	isPlayerTurn = true;
-	return {game_over: true, players_card: cards_thrown};
+	return {game_over: true, scores: scores, players_card: cards_thrown};
 }
 
 // Check whether player can throw card.
