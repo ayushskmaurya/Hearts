@@ -39,6 +39,10 @@ router.get('/next_trick', (req, res) => {
 	res.json(game.next_trick());
 });
 
+router.post('/can_throw', (req, res) => {
+	res.json(game.can_throw(req.body.card));
+});
+
 router.post('/throw_card', (req, res) => {
 	res.json(game.throw_card(req.body.card));
 });
