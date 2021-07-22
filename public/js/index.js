@@ -1,6 +1,11 @@
-document.getElementsByClassName("name")[0].style.marginTop = (window.innerHeight/2 - 55).toString() + "px";
+var playerName = document.getElementsByClassName("name")[0];
+var dev = document.getElementById("dev");
+
+playerName.style.marginTop = (window.innerHeight/2 - playerName.offsetHeight/2 - dev.offsetHeight/2).toString() + "px";
+dev.style.marginTop = (window.innerHeight/2 - playerName.offsetHeight/2 - dev.offsetHeight/2).toString() + "px";
 window.onresize = () => {
-	document.getElementsByClassName("name")[0].style.marginTop = (window.innerHeight/2 - 55).toString() + "px";
+	playerName.style.marginTop = (window.innerHeight/2 - playerName.offsetHeight/2 - dev.offsetHeight/2).toString() + "px";
+	dev.style.marginTop = (window.innerHeight/2 - playerName.offsetHeight/2 - dev.offsetHeight/2).toString() + "px";
 }
 
 // Saving name of the player.

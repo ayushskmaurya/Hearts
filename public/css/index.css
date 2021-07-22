@@ -1,6 +1,6 @@
 div.name {
 	margin: auto;
-	height: 110px;
+	height: fit-content;
 	background-color: #006400;
 	box-sizing: border-box;
 	border-radius: 25px;
@@ -49,4 +49,16 @@ input.name:focus {
 }
 .play:hover {
 	background-color: #530000;
+}
+
+#dev {
+	padding: 0px 7px 4px 7px;
+	background-color: #640000;
+	text-align: right;
+}
+
+.dev {
+	text-decoration: none;
+	color: #fff;
+	font-family: 'Noto Sans JP', sans-serif;
 }
