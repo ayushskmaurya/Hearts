@@ -1,10 +1,12 @@
+var playerName = "";  // Name of the player.
 var players_cards = {};  // Cards of each computer player.
 var player_cards = [];  // Cards of the player.
 var lead;  // Player who leads with the current trick.
 var tricks_left;  // To track the no. of tricks left.
 var cards_thrown = {};  // Cards thrown by each player for the trick.
 var isPlayerTurn = false;  // To check whether the player can throw card.
-var scores = {};
+var scores = {};  // Scores of all the players.
+var showScore = false;  // Whether to render score page.
 
 // Sorting the cards
 sortCards = (card2, card1) => {
@@ -75,6 +77,12 @@ choose_card = (player) => {
 	return card;
 };
 
+// Saving name of the player.
+exports.save_name = (name) => {
+	playerName = name;
+	return true;
+};
+
 // Dealing the cards
 exports.Deal = (deck) => {
 	tricks_left = 13;
@@ -87,8 +95,8 @@ exports.Deal = (deck) => {
 
 // Beginning next trick.
 exports.next_trick = () => {
+	lead = trick_lead();
 	if(tricks_left > 0) {
-		lead = trick_lead();
 		cards_thrown = {};
 		if(lead !== 0) {
 			for(let i=lead; i<=3; i++)
@@ -99,6 +107,7 @@ exports.next_trick = () => {
 		isPlayerTurn = true;
 		return {game_over: false, scores: scores, players_card: cards_thrown};
 	}
+	showScore = true;
 	isPlayerTurn = true;
 	return {game_over: true, scores: scores, players_card: cards_thrown};
 }
@@ -138,3 +147,24 @@ exports.throw_card = (card) => {
 	tricks_left--;
 	return players_card;
 }
+
+// Check whether score page should be rendered.
+exports.canShowScore = () => {
+	return showScore;
+};
+
+// Return name of the player and scores.
+exports.getNameScore = () => {
+	return {
+		playerName: (playerName.length > 0) ? playerName : "Player",
+		score: scores
+	};
+};
+
+// Return whether player is winner or not.
+exports.isWinner = () => {
+	for(let i=1; i<=3; i++)
+		if(scores.player0 > scores['player' + i])
+			return false;
+	return true;
+};

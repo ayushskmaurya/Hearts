@@ -1,0 +1,25 @@
+<div class="score">
+	<table>
+		<tr>
+			<th>{{data.playerName}}</th>
+			<th>West</th>
+			<th>North</th>
+			<th>East</th>
+		</tr>
+		<tr>
+			<td id="score0">{{data.score.player0}}</td>
+			<td id="score1">{{data.score.player1}}</td>
+			<td id="score2">{{data.score.player2}}</td>
+			<td id="score3">{{data.score.player3}}</td>
+		</tr>
+	</table>
+
+	<h1 id="status"></h1>
+
+	<div>
+		<input type="button" onclick="location.href='/game';" class="cont" value="Continue">
+		<input type="button" onclick="location.href='/';" class="exit" value="Exit">
+	</div>
+</div>
+
+<script>const isWinner = {{isWinner}}</script>

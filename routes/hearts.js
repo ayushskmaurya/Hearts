@@ -6,7 +6,7 @@ const game = require('../game');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-	res.render('index', {css: 'index', js: 'index'});
+	res.render('index', {page: 'index'});
 });
 
 router.get('/game', (req, res) => {
@@ -31,8 +31,22 @@ router.get('/game', (req, res) => {
 	res.render('game', {
 		player0_cards: game.Deal(deck),
 		range: range,
-		css: 'game', js: 'game'
+		page: 'game'
 	});
+});
+
+router.get('/score', (req, res) => {
+	if(game.canShowScore())
+		res.render('score', {page: 'score',
+			data: game.getNameScore(),
+			isWinner: game.isWinner
+		});
+	else
+		res.redirect("/");
+});
+
+router.post('/save_name', (req, res) => {
+	res.json(game.save_name(req.body.name));
 });
 
 router.get('/next_trick', (req, res) => {

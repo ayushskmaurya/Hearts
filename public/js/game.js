@@ -21,7 +21,7 @@ next_trick = () => {
 			}
 		}
 		else
-			location.href="/game";
+			location.href="/score";
 	};
 
 	xhr.send();
