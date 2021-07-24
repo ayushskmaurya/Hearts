@@ -1,39 +1,77 @@
-<div class="game">
-	<div class="row1">
-	{{#each range}}
-		<input type="button" id="p2-{{this}}" value="#" disabled>
-	{{/each}}
-		<span id="player2_score"></span>
+<div id="game">
+	<div id="row1">
+		<p class="score">North: <span id="player2_score"></span></p>
+		<div id="vertical">
+		{{#each range}}
+			<div class="vCardDiv" id="p2-{{this}}">
+				<img class="vCard" src="assets/images/card_back_side.jpg">
+			</div>
+		{{/each}}
+		</div>
 	</div>
 	
-	<div class="row2">
-		<div class="col1">
-		{{#each range}}
-			<input type="button" id="p1-{{this}}" value="#" disabled>
-		{{/each}}
-			<span id="player1_score"></span>
+	<div id="row2">
+		<div id="col1">
+			<p class="score">West: <span id="player1_score"></span></p>
+			<div id="horizontal">
+			{{#each range}}
+				<div class="hCardDiv" id="p1-{{this}}">
+					<img class="hCard" src="assets/images/card_back_side.jpg">
+				</div>
+			{{/each}}
+			</div>
 		</div>
 
-		<div class="col2">
-			<input type="button" id="player3_card" value="" style='visibility:hidden'><br>
-			<input type="button" id="player2_card" value="" style='visibility:hidden'><br>
-			<input type="button" id="player1_card" value="" style='visibility:hidden'><br>
-			<input type="button" id="player0_card" value="" style='visibility:hidden'><br>
-			<input type="button" id="ok" onclick="next_trick();" value="OK">
+		<div id="col2">
+			<div id="col2a">
+				<div class="westCardDiv" id="p1_card" style='visibility: hidden'>
+					<img class="hCard" id="player1_card">
+				</div>
+			</div>
+
+			<div id="col2b">
+				<div class="northCardDiv" id="p2_card" style='visibility: hidden'>
+					<img class="hCard" id="player2_card">
+				</div>
+
+				<div class="okDiv">
+					<button id="ok" onclick="next_trick();">OK</button>
+				</div>
+
+				<div class="playerCardDiv" id="p0_card" style='visibility: hidden'>
+					<img class="hCard" id="player0_card">
+				</div>
+			</div>
+
+			<div id="col2c">
+				<div class="eastCardDiv" id="p3_card" style='visibility: hidden'>
+					<img class="hCard" id="player3_card">
+				</div>
+			</div>
 		</div>
 
-		<div class="col3">
-		{{#each range}}
-			<input type="button" id="p3-{{this}}" value="#" disabled>
-		{{/each}}
-			<span id="player3_score"></span>
+		<div id="col3">
+			<p class="score">East: <span id="player3_score"></span></p>
+			<div id="horizontal">
+			{{#each range}}
+				<div class="hCardDiv" id="p3-{{this}}">
+					<img class="hCard" src="assets/images/card_back_side.jpg">
+				</div>
+			{{/each}}
+			</div>
 		</div>
 	</div>
 
-	<div class="row3">
-	{{#each player0_cards}}
-		<input type="button" id="{{this}}" onclick="can_throw('{{this}}');" value="{{this}}">
-	{{/each}}
-		<span id="player0_score"></span>
+	<div id="row3">
+		<div id="vertical">
+		{{#each player0_cards}}
+			<div class="vCardDiv" id="{{this}}">
+				<button type="button" class="vCardBtn" onclick="can_throw('{{this}}');">
+					<img class="vCard" src="assets/cards/{{this}}.png">
+				</button>
+			</div>
+		{{/each}}
+		</div>
+		<p class="score">{{playerName}}: <span id="player0_score"></span></p>
 	</div>
 </div>

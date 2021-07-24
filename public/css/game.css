@@ -1,15 +1,158 @@
-.game {
-	width: fit-content;
-	height: fit-content;
+@media(min-width: 576px) {
+	:root {
+		--gameWidth: 570px;
+		--cardWidth: 75px;
+		--cardHeight: 95px;
+		--scoreHeight: 20px;
+		--scoreFontSize: 14px;
+	}
+}
+@media(min-width: 380px) and (max-width: 575px) {
+	:root {
+		--gameWidth: 100vw;
+		--cardWidth: 75px;
+		--cardHeight: 95px;
+		--scoreHeight: 20px;
+		--scoreFontSize: 14px;
+	}
+}
+@media(min-width: 305px) and (max-width: 379px) {
+	:root {
+		--gameWidth: 100vw;
+		--cardWidth: 60px;
+		--cardHeight: 75px;
+		--scoreHeight: 15px;
+		--scoreFontSize: 10px;
+	}
+}
+@media(max-width: 304px) {
+	:root {
+		--gameWidth: 100vw;
+		--cardWidth: 37px;
+		--cardHeight: 47px;
+		--scoreHeight: 10px;
+		--scoreFontSize: 6px;
+	}
 }
 
-.row1, .col1, .col2, .col3, .row3 {
-	box-sizing: border-box;
-	border: 1px black solid;
-	padding: 20px;
-	margin: 2px;
+:root {
+	--gameHeight: 100vh;
+	--row2Height: calc(var(--gameHeight) - 2 * (var(--cardHeight) + var(--scoreHeight)));
+	--col2Width: calc(var(--gameWidth) - 2 * var(--cardWidth));
+	--col2LeftMargin: calc((var(--col2Width) - 3 * var(--cardWidth)) / 4);
+	--col2TopMargin: calc((var(--row2Height) - (2 * var(--cardHeight) + 40px)) / 4);
 }
 
-.row2 {
+#game {
+	margin: auto;
+	width: var(--gameWidth);
+	height: var(--gameHeight);
+}
+
+#row1, #row3 {
+	width: 100%;
+	height: calc(var(--cardHeight) + var(--scoreHeight));
+}
+
+#row2 {
+	width: 100%;
+	height: var(--row2Height);
 	display: flex;
+}
+
+#col1, #col3 {
+	width: var(--cardWidth);
+	height: 100%;
+}
+
+#col2 {
+	width: var(--col2Width);
+	height: 100%;
+	display: flex;
+}
+
+p.score {
+	margin: 0px 5px;
+	height: var(--scoreHeight);
+	color: #fff;
+	font-size: var(--scoreFontSize);
+	font-family: 'Noto Sans JP', sans-serif;
+	font-weight: bold;
+}
+
+#vertical {
+	display: flex;
+	width: 100%;
+	height: var(--cardHeight);
+}
+
+#horizontal {
+	width: 100%;
+	height: calc(100% - var(--scoreHeight));
+}
+
+.vCardDiv {
+	width: var(--cardWidth);
+	height: 100%;
+}
+
+.hCardDiv {
+	width: 100%;
+	height: var(--cardHeight);
+}
+
+.vCardBtn {
+	width: 100%;
+	height: 100%;
+	border: none;
+	border-radius: 10px;
+	padding: 0px;
+}
+
+.vCard, .hCard {
+	width: var(--cardWidth);
+	height: var(--cardHeight);
+	box-sizing: border-box;
+	border: 2px solid #000;
+	border-radius: 10px;
+}
+
+#col2a, #col2b, #col2c {
+	margin-left: var(--col2LeftMargin);
+	width: var(--cardWidth);
+	height: 100%;
+}
+
+.westCardDiv, .eastCardDiv {
+	margin-top: calc((var(--row2Height) - var(--cardHeight)) / 2);
+}
+
+.northCardDiv, .playerCardDiv {
+	margin-top: var(--col2TopMargin);
+}
+
+.westCardDiv, .northCardDiv, .eastCardDiv, .playerCardDiv {
+	width: 100%;
+	height: var(--cardHeight);
+}
+
+.okDiv {
+	height: 40px;
+	width: var(--cardWidth);
+	margin-top: var(--col2TopMargin);
+}
+
+#ok {
+	height: 100%;
+	width: 100%;
+	border: none;
+	border-radius: 10px;
+	color: #fff;
+	background-color: #640000;
+	font-size: 14px;
+	font-family: 'Noto Sans JP', sans-serif;
+	font-weight: bold;
+}
+#ok:hover {
+	background-color: #530000;
 }

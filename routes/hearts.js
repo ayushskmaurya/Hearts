@@ -31,6 +31,7 @@ router.get('/game', (req, res) => {
 	res.render('game', {
 		player0_cards: game.Deal(deck),
 		range: range,
+		playerName: game.getName(),
 		page: 'game'
 	});
 });
@@ -38,7 +39,7 @@ router.get('/game', (req, res) => {
 router.get('/score', (req, res) => {
 	if(game.canShowScore())
 		res.render('score', {page: 'score',
-			data: game.getNameScore(),
+			data: {playerName: game.getName(), score: game.getScore()},
 			isWinner: game.isWinner
 		});
 	else

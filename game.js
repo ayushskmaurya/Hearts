@@ -93,6 +93,11 @@ exports.Deal = (deck) => {
 	return player_cards;
 };
 
+// Return name of the player.
+exports.getName = () => {
+	return (playerName.length > 0) ? playerName : "Player";
+};
+
 // Beginning next trick.
 exports.next_trick = () => {
 	lead = trick_lead();
@@ -153,12 +158,9 @@ exports.canShowScore = () => {
 	return showScore;
 };
 
-// Return name of the player and scores.
-exports.getNameScore = () => {
-	return {
-		playerName: (playerName.length > 0) ? playerName : "Player",
-		score: scores
-	};
+// Return score of all the players.
+exports.getScore = () => {
+	return scores;
 };
 
 // Return whether player is winner or not.
